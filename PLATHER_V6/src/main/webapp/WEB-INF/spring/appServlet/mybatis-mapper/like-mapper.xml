@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jhm.plather.dao.LikeDao">
+
+	<!--  l_id 가 찜을 누른 게시물 코드 조회 -->
+	<select id="myLikeBoard" resultType="Long" parameterType="String">
+		
+		SELECT l_bcode FROM tbl_like 
+		WHERE l_id = #{l_id} AND l_likecheck = 1
+	</select>
+	<!--  l_id 가 찜을 누른 게시물 개수 조회 -->
+	<select id="myLikeBoardCNT" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM tbl_like 
+		WHERE l_id = #{l_id} AND l_likecheck = 1
+	</select>
+	
+	<select id="findByIdAndBCode" parameterType="LikeVO" resultType="int">
+		SELECT l_likecheck FROM tbl_like WHERE l_id = #{l_id} AND l_bcode = #{l_bcode}
+	</select>
+	
+	<select id="findByIdAndBCodeCount" parameterType="LikeVO"  resultType="int">
+		SELECT COUNT(*) FROM tbl_like WHERE l_id = #{l_id} AND l_bcode = #{l_bcode}
+	</select>
+	
+	
+	<insert id="insert" parameterType="LikeVO">
+		INSERT INTO tbl_like(l_id, l_bcode, l_likecheck)
+		VALUES (#{l_id},#{l_bcode},#{l_likecheck})
+		
+	</insert>
+
+	<update id="clickLike" parameterType="LikeVO">
+		UPDATE tbl_like SET
+		l_likecheck = 1
+		WHERE l_bcode = #{l_bcode} AND l_id = #{l_id}
+	</update>
+
+	<update id="cancelLike" parameterType="LikeVO">
+		UPDATE tbl_like SET
+		l_likecheck = 0
+		WHERE l_bcode = #{l_bcode} AND l_id = #{l_id}
+	</update>
+</mapper>

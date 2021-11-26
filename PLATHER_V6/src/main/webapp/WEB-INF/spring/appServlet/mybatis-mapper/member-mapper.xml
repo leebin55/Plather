@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jhm.plather.dao.MemberDao">
+
+	<!-- 전체 조회 -->
+	<select id="selectAll" resultType="MemberVO">
+		SELECT * FROM tbl_member
+	</select>
+
+	<!-- ID로 값 조회 (회원 ID 중복 검사) -->
+	<select id="findById" resultType="MemberVO">
+		SELECT * FROM tbl_member
+		WHERE m_id = #{m_id}
+	</select>
+
+	<!-- nickname으로 값 조회 (회원 닉네임 중복 검사) -->
+	<select id="findByNick" resultType="MemberVO">
+		SELECT * FROM tbl_member
+		WHERE m_nickname = #{m_nickname}
+	</select>
+
+	<!-- insert를 수행할때 값이 있으면 update로 전환(회원가입,마이페이지 수정) -->
+	<insert id="insertOrUpdate" parameterType="MemberVO">
+		INSERT INTO tbl_member (
+		m_id, m_pw, m_nickname, m_birth,
+		m_name, m_gender, m_level, m_profile
+
+		) VALUES (
+		#{m_id}, #{m_pw}, #{m_nickname}, #{m_birth},
+		#{m_name}, #{m_gender}, #{m_level}, #{m_profile}
+		)
+		ON DUPLICATE KEY UPDATE
+		m_id = #{m_id}, m_pw = #{m_pw},
+		m_nickname = #{m_nickname}, m_birth = #{m_birth},
+		m_name = #{m_name}, m_gender = #{m_gender},
+		m_level = #{m_level}, m_profile = #{m_profile}
+	</insert>
+	
+	<!-- member ID로 게시글 조회할때  -->
+  	<select id="findByIdBoardResultMap" resultMap="memAndBoardResultMap">
+  		<include refid="joinMemberAndBoard">
+  			<property name="m_id" value="#{m_id}"/>
+  		</include>
+  	</select>
+  	
+<!--  tbl_board와 tbl_member 테이블 조인(m_id가 같을때)  -->
+  	<sql id="joinMemberAndBoard">
+  	SELECT 
+  			M.m_id as m_id, M.m_nickname as m_nickname,
+  			M.m_birth as m_birth, M.m_name as m_name,
+ 			M.m_gender as m_gender , M.m_level as m_level,
+ 			M.m_profile as m_profile,
+			B.b_code as b_code , B.b_title as b_title, B.b_date as b_date,
+			B.b_moddate as b_moddate, B.b_hit as b_hit
+	FROM tbl_member M 
+		LEFT JOIN tbl_board B
+			ON M.m_id = B.b_id
+	WHERE M.m_id = #{m_id}
+  	</sql>
+  	
+  	<!-- ResultMap -->
+  	<resultMap type="MemberAndBoardDTO" id="memAndBoardResultMap">
+  	<id property="m_id" column="m_id"/>
+  	<result property ="m_nickname" column="m_nickname"/>
+  	<result property ="m_birth" column="m_birth"/>
+  	<result property ="m_name" column="m_name"/>
+  	<result property ="m_gender" column="m_gender"/>
+  	<result property ="m_level" column="m_level"/>
+  	<result property ="m_profile" column="m_profile"/>
+  	<collection property="boardList" ofType="BoardVO">
+  		<id property="b_code" column="b_code"/>
+  		<result property ="b_title" column="b_title"/>
+  		<result property ="b_content" column="b_content"/>
+  		<result property ="b_date" column="b_date"/>
+  		<result property ="b_moddate" column="b_moddate"/>
+  		<result property ="b_hit" column="b_hit"/>
+  		<result property ="b_like" column="b_like"/>	
+  	</collection>
+  	
+  	</resultMap>
+  	
+  	
+</mapper>

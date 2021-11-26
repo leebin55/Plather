@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/*나의활동 box*/
+#main_container {
+	padding-top: 30px;
+	min-height: calc(100vh - 70px);
+}
+
+.main_title {
+	left: 100px;
+	font-weight: bold;
+	font-size: 30px;
+	margin-left: 100px;
+}
+
+.sub_container {
+	display: flex;
+	margin-top: 30px;
+}
+/* 회원 정보 */
+#info_container {
+	border: 1px solid black;
+	line-height: 25px;
+	padding: 30px 15px;
+	margin: 20px;
+	width: 15%;
+	text-align: center;
+}
+
+#info_container img.profile {
+	margin: 10px;
+	width: 80%;
+}
+
+#info_container div.line {
+	width: inherit;
+	height: 1px;
+	background-color: black;
+}
+
+#info_container .email {
+	font-size: 12px;
+	overflow: hidden;
+}
+
+#info_container button {
+	padding: 5px 10px;
+	margin-top: 10px;
+	background-color: #91c788;
+	border: 0px;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+button:hover {
+	cursor: pointer;
+	font-weight: bold;
+}
+/* 오른쪽 부분 */
+#right_container {
+	width: 90%;
+	margin-left: 10px;
+}
+
+#right_container .box_container {
+	display: flex;
+	top: 50px;
+}
+
+#right_container .box {
+	list-style: none;
+	flex: 1;
+	padding: 10px;
+	margin: 50px 30px;
+	border-radius: 10px;
+	background-color: #E1E1E1;
+	text-align: center;
+}
+
+
+#right_container .count {
+	padding-top: 20px;
+	padding-bottom: 5px;
+}
+#right_container .box:hover {
+	cursor: pointer;
+}
+#right_container .box:hover div.count{
+	text-decoration: underline;
+}
+
+
+.search_container {
+	position: relative;
+}
+
+input {
+	background-color: #f3f0d7;
+	height: 25x;
+	border-radius: 8px;
+	border: none;
+	margin-top: 15px;
+	margin-left: 30px;
+	padding: 5px 15px;
+	text-align: center;
+}
+
+input:focus {
+	outline: none;
+}
+
+img.search_icon {
+	position: absolute;
+	left: 34px;
+	top: 22px;
+	width: 10px;
+	height: 10px;
+}
+
+button.btn_search {
+	background-color: #91c788;
+	padding: 3px 5px;
+	border-radius: 5px;
+	margin-left: 10px;
+	border: 0px;
+}

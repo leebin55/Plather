@@ -1,0 +1,103 @@
+@charset "UTF-8";
+.update {
+  padding: 150px;
+}
+.update fieldset {
+  border: 1px solid #53734e;
+  border-radius: 15px;
+}
+
+.update legend {
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #53734e;
+  border-radius: 15px;
+  color: white;
+  font-weight: 900;
+}
+.update div {
+  width: 80%;
+  margin: 5px auto;
+}
+.update label {
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  margin: 4px 5px;
+  padding: 8px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.update input {
+  width: 40%;
+  margin: 4px 5px;
+  padding: 8px;
+  border-radius: 25px;
+  outline: 0;
+  border-color: #53734e;
+}
+.update input:focus {
+  border-color: #53734e;
+}
+.update input:hover {
+  background-color: #feffdf;
+}
+
+input#m_id {
+	background-color: rgb(211,211,211);
+}
+
+.update button {
+  padding: 10px 20px;
+  outline: 0;
+  border: 0;
+  background-color: #feffdf;
+  color: #53734e;
+  border-radius: 15px;
+  font-weight: 900;
+  border: 2px solid #53734e;
+}
+.update button:hover {
+  box-shadow: 2px 2px 2px #53734e;
+  cursor: pointer;
+}
+.btn_box {
+  text-align: right;
+}
+
+div#pw_box, div#re_pw_box, div#nick_box {
+	display: flex;
+	width: 90%;
+}
+
+div.pw.error, div.re_pw.error, div.nick.error {
+	
+	margin-left: 5px;
+	width: 30%;
+	font-size: 12px; 
+}
+
+
+ div.pw.error.view, div.re_pw.error.view, div.nick.error.view  {
+ 	padding-top: 8px;
+	color: rgb(245, 63, 63);
+	 
+}
+
+ div.pw.error.view_answer, div.re_pw.error.view_answer,
+ 	div.nick.error.view_answer {
+ 	padding-top: 8px;
+	color: rgb(60, 179, 113);
+}
+
+
+
+div#nick_box input, div#pw_box input, div#re_pw_box input {
+	
+		width: 36%;
+}
+
+div#nick_box label, div#pw_box label, div#re_pw_box label {
+	
+		margin-left: 40px;
+}

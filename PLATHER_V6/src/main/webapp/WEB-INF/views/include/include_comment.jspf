@@ -1,0 +1,216 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
+<script src="https://kit.fontawesome.com/9e138c7f33.js"
+	crossorigin="anonymous"></script>
+<style>
+form.comment table {
+	width: 100%;
+}
+
+form.comment table textarea {
+	width: 100%;
+}
+
+form.comment table td {
+	text-align: right;
+}
+
+form.comment button {
+	background-color: #e1e1e1;
+	padding: 3px 5px;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.drop {
+	position: relative;
+	/* display: inline-block; */
+}
+
+.dropmenu {
+	/*display: none;*/
+	visibility: hidden;
+	position: absolute;
+	min-width: 50px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	position: absolute;
+	cursor: pointer;
+}
+
+.dropmenu p {
+	padding: 5px;
+	text-align: center;
+	background-color: white;
+}
+
+.dropmenu p:hover {
+	background-color: #e1e1e1;
+}
+
+.drop:hover .dropmenu {
+	/*display: block;*/
+	/* 영역을 미리 만들어놓는 것이 visibility, 영역을 아예 없애버리는 거  display: block */
+	visibility: visible;
+}
+
+.drop:hover .dropbtn {
+	cursor: pointer;
+}
+
+.list button {
+	border: 0;
+	background: none;
+	cursor: pointer;
+}
+
+.update_form, .c_cancel {
+	display: none;
+}
+
+.list input {
+	background-color: #f3f0d7;
+	height: 25x;
+	border-radius: 8px;
+	border: none;
+	margin-top: 15px;
+	padding: 5px 15px;
+	text-align: center;
+}
+
+.list input:focus {
+	outline: none;
+}
+
+button.btn_update {
+	background-color: #e1e1e1;
+	padding: 3px 5px;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+</style>
+<div class="comment">
+
+	<!-- 댓글입력 -->
+	<h1>댓글</h1>
+	<form method="POST" class="comment" action="${rootPath}/comment/insert">
+		<input type="hidden" name="c_bcode" value="${BOARD_DETAIL.b_code}" />
+		<table>
+			<tr>
+				<th>
+					<img style="width:20px" style="margin-right:10px" src="${rootPath}/static/images/profile_${MEMBER.m_profile}.png">
+					<span>${MEMBER.m_nickname}</span>
+				</th>
+				<th><input type="hidden" name="c_id" value="${MEMBER.m_id}" /></th>
+			</tr>
+			<tr>
+				<th><input name="c_title" placeholder="노래"></th>
+				<th><input name="c_singer" placeholder="가수"></th>
+			</tr>
+			<tr>
+				<th colspan="2"><textarea name="c_comment" row="5" cols="100"
+						placeholder="내용"></textarea></th>
+			</tr>
+			<tr>
+				<td></td>
+				<td><button>등록</button></td>
+			</tr>
+		</table>
+	</form>
+
+	<!-- 댓글목록 -->
+	<table class="list">
+		<c:forEach items="${COMS}" var="CO" varStatus="i">
+			<tr data-seq="${CO.c_seq}" data-index="${i.index}">
+				<th>
+					<img style="width:20px" style="margin-right:10px" src="${rootPath}/static/images/profile_${CO.c_profile}.png">
+					<span>${CO.c_nickname}</span>
+				</th>
+				<th>${CO.c_date}</th>
+				<th class="drop"><c:if
+						test="${MEMBER.m_nickname == CO.c_nickname}">
+						<button class="dropbtn">
+							<i class="fas fa-ellipsis-v fa-lg"></i>
+						</button>
+						<div class="dropmenu">
+							<p class="c_update">수정
+							<p class="c_cancel">취소
+							<p class="c_delete">삭제
+						</div>
+					</c:if></th>
+			</tr>
+			<c:choose>
+				<c:when test="${not empty CO}">
+					<tr>
+						<th colspan="3">
+							<form method="post" action="${rootPath}/comment/insert/song">
+
+								<input type="hidden" name="c_bcode"
+									value="${BOARD_DETAIL.b_code}" /> <input name="s_title"
+									value="${CO.c_title}" readonly> <input name="s_singer"
+									value="${CO.c_singer}" readonly>
+								<c:if test="${MEMBER.m_nickname == BOARD_DETAIL.b_nick}">
+									<button>
+										<i class="far fa-plus-square fa-lg"></i>
+									</button>
+								</c:if>
+							</form>
+						</th>
+					</tr>
+				</c:when>
+				<c:otherwise>
+
+				</c:otherwise>
+			</c:choose>
+			<tr>
+				<td colspan="3">
+					<p style="white-space: pre;" class="com">${CO.c_comment}</p>
+					<form method="POST" class="update_form"
+						action="${rootPath}/comment/update">
+						<input type="hidden" name="c_seq" value="${CO.c_seq}" />
+						<textarea name="c_comment" placeholder="${CO.c_comment}"></textarea>
+						<button class="btn_update">수정완료</button>
+					</form>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+</div>
+<script>
+	document.querySelector("table.list").addEventListener("click",(e)=>{
+		
+		let target = e.target
+		let seq = target.closest("TR").dataset.seq
+		if(target.className.includes("c_delete")){
+			location.href = "${rootPath}/comment/delete?c_seq=" + seq
+		}
+		if(target.className.includes("c_update")){
+
+			
+			let index = target.closest("TR").dataset.index
+			let update_form = document.querySelectorAll(".update_form")
+			let c_cancel = document.querySelectorAll(".c_cancel")
+			let com = document.querySelectorAll(".com")
+			let c_update = document.querySelectorAll(".c_update")
+
+			update_form[index].style.display = "block"
+			c_cancel[index].style.display = "block"
+			com[index].style.display = "none"
+			c_update[index].style.display = "none"
+		}
+		if(target.className.includes("c_cancel")){
+			window.location.reload()
+		}
+		/*
+		if(target.className.includes("btn_update")){
+			if(confirm('수정하시겠습니까')){
+				document.querySelector("form#c_up").action="${rootPath}/comment/update?c_seq=" + seq
+				document.querySelector("form#c_up").submit();
+			}
+		}
+		*/
+
+	})
+</script>

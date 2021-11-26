@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}"/>
+
+<link href="${rootPath}/static/css/header.css?ver=2021-07-19-001"
+	rel="stylesheet" />
+<header>
+		<a href="${rootPath}/main"><img
+		src="${rootPath}/static/images/LOGO.png" /></a>
+		
+	<nav id="sub_nav">	
+		<ul>
+			<li id="notice">공지사항</li>
+			<li id="playlist">플레이리스트</li>
+			<li id="mypage">마이페이지</li>
+			
+			<c:if test="${empty MEMBER}">
+				<li id="login">로그인</li>
+			</c:if>
+			<c:if test="${not empty MEMBER}">
+				<li>${MEMBER.m_nickname}님 반갑습니다 :D</li>
+				<li id="logout">로그아웃</li>
+			</c:if>
+			
+		</ul>
+	</nav>	
+</header>
+
+
+<script>
+	/* 변수 선언 */
+	let sub_nav = document.querySelector("nav#sub_nav")
+	
+	// sub_nav가 있으면
+	if(sub_nav) {
+		
+		// main_nav 클릭시 event 발생
+		sub_nav.addEventListener("click",(e) =>{
+			
+			let sub_menu = e.target
+			
+			// menu에 li tag에만 event 적용
+			if(sub_menu.tagName === "LI") {
+				
+				if(sub_menu.id === "notice") {
+					location.href = "${rootPath}/notice/"
+					
+				} else if(sub_menu.id === "playlist") {
+					location.href = "${rootPath}/board/"
+					
+				} else if(sub_menu.id === "mypage"){
+					location.href = "${rootPath}/mypage/"
+					
+				} else if(sub_menu.id === "login") {
+					
+					location.href = "${rootPath}/member/login"
+					
+				} else if(sub_menu.id === "logout") {
+					location.href = "${rootPath}/member/logout"
+				}
+					
+			}
+			
+		})
+	}
+</script>

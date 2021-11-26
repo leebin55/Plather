@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+div#title {
+	border-bottom: none;	
+	
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 40px;
+	padding: 12px 0px;
+	
+
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+	background-color: rgb(83, 115, 77);
+	color: white;
+	letter-spacing: 3px;
+}
+
+form.member_input {
+	
+	border: 2px solid black;
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
+
+
+	width: 60%;
+	margin: 0 auto;
+	backdrop-filter: blur(8px);
+	background-color: rgba(255, 255, 255, 0.5);
+	text-align: center;
+}
+
+form.member_input img {
+	
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 10%;
+	height: 10%; 
+}
+
+form.member_input div {
+
+	text-align: left; 
+	padding: 10px;
+
+} 
+
+
+div.join.error.view{
+	margin:0 auto;
+	margin-bottom: 5px;
+	background-color: rgba(245, 63, 63, 0.8);
+	color: white;
+	border-radius: 5px;	
+	width: 40%;
+	font-weight: bold;
+	
+}
+
+div#id_box, div#pw_box, div#re_pw_box, div#nick_box {
+	display: flex;
+}
+
+div.id.error, div.pw.error, div.re_pw.error, div.nick.error {
+	margin-left: 5px;
+	width: 40%;
+	font-size: 12px; 
+}
+
+
+div.id.error.view, div.pw.error.view, 
+	div.re_pw.error.view, div.nick.error.view  {
+	color: rgb(245, 63, 63);
+	 
+}
+
+div.id.error.view_answer, div.pw.error.view_answer, 
+	div.re_pw.error.view_answer,div.nick.error.view_answer {
+	color: rgb(60, 179, 113);
+}
+
+
+ input, label {
+	display: inline-block;
+	
+}
+
+label {
+	margin-left: 30%;
+	margin-right: 10px;
+	width: 8%;
+	
+	font-weight: bold;
+	text-align: right;
+}
+
+input {
+	border-radius: 5px;
+	outline:none;
+	padding: 5px;
+	width: 20%;
+}
+
+input.m_gender {
+	width: 2%;
+	margin-right: 10px;
+}
+
+input.m_gender:nth-of-type(2) {
+	width: 2%;
+}
+
+input:hover {
+	background-color: rgb(211,211,211);
+}
+
+input:nth-of-type(2), input:nth-of-type(3), input:nth-of-type(4), input:nth-of-type(5){
+	width: 25%;
+	transition: 0.8s;
+	outline: none;
+		
+}
+
+p#p_id, p#p_pw {
+	font-size: 12px;
+}
+
+p#p_id,p#p_pw {
+	margin-bottom: 10px;
+
+}
+
+div#btn_box {
+	display: inline-block;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 68%;
+}
+
+button.btn_save, button.reset {
+	border: 2px solid black;
+	background: white;
+	border-radius: 5px;
+	width: 130px;
+	height: 40px;
+	padding: 0;
+	font-weight: bold;
+	transition: ease-out 0.5s;
+}
+
+button:hover {
+	border:none;
+	box-shadow: 135px 0 0 0 #53734d inset;
+	color: white;
+	cursor: pointer;
+}
+

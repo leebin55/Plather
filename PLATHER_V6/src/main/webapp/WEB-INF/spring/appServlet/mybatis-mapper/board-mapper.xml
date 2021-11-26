@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jhm.plather.dao.BoardDao">
+
+<select id="selectAll" resultType="BoardVO">
+	SELECT * FROM tbl_board
+	ORDER BY b_date DESC
+</select>
+<select id="selectAllDescHit" resultType="BoardVO">
+	SELECT * FROM tbl_board
+	ORDER BY b_hit DESC
+</select>
+<select id="selectAllDescLike" resultType="BoardVO">
+	SELECT * FROM tbl_board
+	ORDER BY b_like DESC
+</select>
+
+<!--  게시물만 조회 -->
+<select id="findById" resultType="BoardVO" parameterType="Long">
+	SELECT * FROM tbl_board WHERE b_code = #{b_code} 
+</select>
+<!--  게시물과 플레이리스트 함께 조회 -->
+<select id="findByIdResultMap" resultMap="bsDTOResultMap">
+	<include refid="joinBoardAndSong">
+		<property name="b_code" value="#{b_code"/>
+	</include>
+</select>
+<select id="findByTitle" resultType="BoardVO" parameterType="String">
+	SELECT * FROM tbl_board WHERE b_title LIKE CONCAT('%', #{b_title},'%') 
+</select>
+
+
+<select id="findByUserId" resultType="BoardVO" parameterType="String">
+	SELECT * FROM tbl_board WHERE b_id =#{b_id}
+</select>
+<select id="findByUserIdCNT" resultType="int" parameterType="String">
+	SELECT COUNT(*) FROM tbl_board WHERE b_id =#{b_id}
+</select>
+
+<!-- b_like (likecount리턴) -->
+<select id="showLikeCnt" resultType="int" 	parameterType="Long">
+		SELECT b_like FROM tbl_board WHERE b_code = #{b_code}
+	</select>
+
+
+<insert id="insert" parameterType="BoardVO">
+	INSERT INTO tbl_board(b_title,b_content,b_id,b_nick) 
+	VALUES(#{b_title},#{b_content},#{b_id},#{b_nick})
+	<selectKey keyProperty="b_code" order="AFTER" resultType="Long">
+	SELECT LAST_INSERT_ID()
+	</selectKey>
+</insert>
+
+<resultMap type="BoardAndSongDTO" id="bsDTOResultMap">
+	<id property="b_code" column="b_code"/>
+	<result property="b_title" column="b_title"/>
+	<result property="b_content" column="b_content"/>
+	<result property="b_date" column="b_date"/>
+	<result property="b_id" column="b_id"/>
+	<result property="b_nick" column="b_nick"/>
+	<result property="b_hit" column="b_hit"/>
+	<result property="b_like" column="b_like"/>
+	<collection property="playList" ofType="SongVO">
+		<id property="s_seq" column="s_seq"/>
+		<result property="s_title" column="s_title"/>
+		<result property="s_singer" column="s_singer"/>
+	</collection>
+</resultMap>
+
+<sql id ="joinBoardAndSong">
+	SELECT 
+		B.b_code as b_code, B.b_title as b_title, B.b_content as b_content,
+		 B.b_date as b_date, B.b_moddate as b_moddate,
+		 B.b_id as b_id,B.b_nick as b_nick, B.b_hit as b_hit,B.b_like as b_like, 
+		S.s_seq as s_seq,S.s_bcode as s_bcode, S.s_title as s_title,
+		 S.s_singer as s_singer 
+	FROM tbl_board as B
+        LEFT JOIN tbl_song as S
+        	ON B.b_code = S.s_bcode
+    WHERE B.b_code = #{b_code}
+</sql>
+
+<update id="update" parameterType="BoardVO">
+	UPDATE tbl_board SET 
+	b_title = #{b_title},
+	b_content = #{b_content}
+	WHERE b_code = #{b_code}
+</update>
+
+<!-- 조회수  -->
+<update id="updateHit" parameterType="BoardVO">
+		UPDATE tbl_board SET
+		b_hit
+		=
+		b_hit + 1
+		WHERE b_code = #{b_code}
+	</update>
+	
+<!-- 좋아요 up -->
+	<update id="likeCountUp" parameterType="Long">
+	UPDATE tbl_board SET 
+	b_like = b_like+1
+	WHERE b_code = #{b_code}
+	</update>
+<!-- 좋아요 down  -->	
+	<update id="likeCountDown" parameterType="Long">
+	UPDATE tbl_board SET 
+	b_like = b_like -1
+	WHERE b_code = #{b_code}
+	</update>
+
+<delete id="delete" >
+	DELETE FROM tbl_board where b_code = #{b_code}
+</delete>
+
+</mapper>

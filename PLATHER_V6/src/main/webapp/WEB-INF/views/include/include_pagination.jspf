@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
+<script src="https://kit.fontawesome.com/9e138c7f33.js"
+	crossorigin="anonymous"></script>
+<style>
+.page_box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.page_nav {
+	display: flex;
+	list-style: none;
+}
+
+.page_nav li {
+	margin: 5px;
+	padding: 0.5rem 1rem;
+	border-radius: 28px;
+}
+
+.page_nav li:hover {
+	cursor: pointer;
+	background-color: rgba(145, 199, 136, 0.3);
+}
+
+.page_nav li.active {
+	background-color: rgba(145, 199, 136, 0.3);
+	font-style: italic;
+	font-weight: 900;
+}
+</style>
+<section class="page_box">
+	<ul class="page_nav">
+		<li data-num="1"><i class="fas fa-angle-double-left"></i></li>
+		<li data-num="${PAGE_NUM-1}"><i class="fas fa-angle-left"></i></li>
+		<c:forEach begin="1" end="${endNum}" var="pageNum">
+
+			<li data-num="${pageNum}"
+				class="
+			<c:if test="${PAGE_NUM == pageNum}">active</c:if>
+			">${pageNum}</li>
+		</c:forEach>
+		<li data-num="${PAGE_NUM+1}"><i class="fas fa-angle-right"></i></li>
+		<li data-num="${endNum}"><i class="fas fa-angle-double-right"></i></li>
+	</ul>
+</section>
+<script>
+	const page_nav = document.querySelector("ul.page_nav")
+	if(page_nav) {
+		page_nav.addEventListener("click",(e)=>{
+			const li = e.target
+			if(li.tagName === "LI"){
+				const pageNum = li.dataset.num
+				location.href = "${rootPath}/notice?pageNum=" + pageNum
+			}
+		})
+	}
+</script>

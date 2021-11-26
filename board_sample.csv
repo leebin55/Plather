@@ -1,0 +1,24 @@
+b_code,b_title,b_content,b_date,b_moddate, b_id,b_nick,b_hit,b_like
+1,7월 2째주 top10,멜론 7월 둘째주 top 10 입이다,2021-07-11,2021-07-12,yub@naver.com,yub,100,30
+2,7월 1째주 top10,멜론 7월 첫째주 top 10 입이다,2021-07-05,2021-07-05,yub1@naver.com,melon,38,20
+3,6월 2째주 top10,멜론 6월 둘째주 top 10 입이다,2021-06-13,2021-06-13,yub@naver.com,yub,50,2
+4,6월 1째주 top10,멜론 6월 첫째주 top 10 입이다,2021-06-10,2021-06-11,yub1@naver.com,melon,33,39
+5,test1,test1,2021-06-11,2021-06-12,test001@naver.com,테스트001,34,40
+6,test2,test2,2021-06-12,2021-06-13,test002@naver.com,테스트002,35,41
+7,test3,test3,2021-06-13,2021-06-14,test003@naver.com,테스트003,36,42
+8,test4,test4,2021-06-14,2021-06-15,test004@naver.com,테스트004,52,43
+9,test5,test5,2021-06-15,2021-06-16,test005@naver.com,테스트005,38,44
+10,test6,test6,2021-06-16,2021-06-17,test001@naver.com,테스트001,39,45
+11,test7,test7,2021-06-17,2021-06-18,test001@naver.com,테스트001,40,52
+12,test8,test8,2021-06-18,2021-06-19,test008@naver.com,테스트008,41,47
+13,test9,test9,2021-06-19,2021-06-20,test009@naver.com,테스트009,42,48
+14,test10,test10,2021-06-20,2021-06-21,test001@naver.com,테스트001,43,49
+15,test11,test11,2021-06-21,2021-06-22,test011@naver.com,테스트011,44,50
+16,test12,test12,2021-06-22,2021-06-23,test012@naver.com,테스트012,45,51
+17,test13,test13,2021-06-23,2021-06-24,test001@naver.com,테스트001,46,52
+18,test14,test14,2021-06-24,2021-06-25,test014@naver.com,테스트014,47,53
+19,test15,test15,2021-06-25,2021-06-26,test004@naver.com,테스트004,48,54
+20,test16,test16,2021-06-26,2021-06-27,test001@naver.com,테스트001,49,55
+21,test17,test17,2021-06-27,2021-06-28,test004@naver.com,테스트004,50,56
+22,test18,test18,2021-06-28,2021-06-29,test004@naver.com,테스트004,51,57
+23,test19,test19,2021-06-29,2021-06-30,test004@naver.com,테스트004,52,58

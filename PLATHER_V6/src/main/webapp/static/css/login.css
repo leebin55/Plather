@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+div#font_box, form#login_form {
+	backdrop-filter: blur(8px);
+	z-index: 500;
+	width: 25vw;
+	height: 65vh;
+	border-radius: 5px;
+}
+
+div#font_box {
+	background-color: rgba(255, 255, 255, 0.5);
+	position: absolute;
+	top: 13%;
+	left: 35%;
+	animation-name: aniTopDownDiv;
+	animation-duration: 0.8s;
+}
+
+div#font_box span {
+	font-weight: bold;
+	font-size: 35px;
+	padding: 0px 15px;
+}
+
+div#font_box p {
+	font-size: 30px;
+	writing-mode: vertical-lr;
+	transform: rotate(180deg);
+	padding: 60px 6px;
+}
+
+form#login_form {
+	background: linear-gradient(135deg, rgba(145, 199, 136, 0.7) 50%, rgba(255, 255, 255, 0));
+	position: absolute;
+	top: 20%;
+	left: 38%;
+	animation-name: aniTopDownForm;
+	animation-duration: 0.8s;
+}
+
+form#login_form h1 {
+	font-size: 40px;
+	color: white;
+	text-align: center;
+}
+
+
+@keyframes aniTopDownForm {
+	from { 
+	top:-300px;
+	opacity: 0;
+	}
+
+	to {
+	top: 20%;
+	opacity: 1;
+	}
+
+}
+@keyframes aniTopDownDiv {
+	from {
+ 	top:-300px;
+	opacity: 0;
+	}
+	
+	to {
+	top: 13%;
+	opacity: 1;
+	}
+}
+
+
+div.login.error.view, div.login.error.not {
+	backdrop-filter: blur(8px);
+	background-color: #F53F3F;
+	margin-top: 20px;
+	text-align: center;
+	color: white;
+	padding: 5px 0px;
+	font-weight: bold;
+}
+
+
+div#name_box, div#password_box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 25px 0px;
+	margin-left: -20px;
+}
+
+div#name_box {
+	margin-top: 30px;
+}
+
+div img {
+	margin-left: 20px;
+	width: 58px;
+	background-color: white;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+input {
+	width: 40%;
+	height: 58px;
+	padding: 0px 10px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border: none;
+	border-left: 3px solid #91c788;
+}
+
+input:hover {
+	background-color: rgb(211,211,211);
+}
+
+input:focus {
+	width: 60%;
+	transition: 0.8s;
+	outline: none;
+}
+
+div#btn_box {
+	display: inline-block;
+	text-align: center;
+	margin-top: 30px;
+	margin-left: 35%;
+	
+}
+
+div#btn_box p {
+	margin-top: 15px;
+	font-weight: bold;
+}
+
+button {
+	background: white;
+	border-radius: 5px;
+	width: 130px;
+	height: 40px;
+	padding: 0;
+	border: none;
+	font-weight: bold;
+	transition: ease-out 0.5s;
+}
+
+button:hover {
+	box-shadow: 135px 0 0 0 #53734d inset;
+	color: white;
+	cursor: pointer;
+}
+
+button.btn_join {
+	
+	margin-top: 5px;
+}
+
+

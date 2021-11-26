@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jhm.plather.dao.NoticeDao">
+	<select id="selectAll" resultType="NoticeVO">
+		SELECT * FROM tbl_notice
+		ORDER BY n_date DESC
+	</select>
+	<select id="selectAllView" resultType="NoticeDTO">
+		SELECT * FROM view_nlist
+		ORDER BY n_date DESC
+	</select>
+	<select id="findByMaxNcode" resultType="String">
+		SELECT MAX(n_code) FROM
+		tbl_notice
+	</select>
+	<select id="findById" resultType="NoticeVO">
+		SELECT * FROM tbl_notice WHERE
+		n_code = #{n_code}
+	</select>
+	<select id="findByNcode" resultType="NoticeDTO">
+		SELECT * FROM view_nlist WHERE
+		n_code = #{n_code}
+	</select>
+	<select id="findByTitle" resultType="NoticeDTO">
+		SELECT * FROM view_nlist
+		WHERE n_title LIKE CONCAT('%', #{n_title}, '%')
+	</select>
+	<select id="findByNick" resultType="NoticeDTO">
+		SELECT * FROM view_nlist
+		WHERE n_nickname LIKE CONCAT('%', #{n_nickname}, '%')
+	</select>
+	<select id="findByContent" resultType="NoticeDTO">
+		SELECT * FROM view_nlist
+		WHERE n_content LIKE CONCAT('%', #{n_content}, '%')
+	</select>
+	<insert id="insert" parameterType="NoticeVO">
+		INSERT INTO tbl_notice(n_code,
+		n_title, n_content, n_date, n_time)
+		VALUES(#{n_code}, #{n_title},
+		#{n_content}, CURRENT_DATE(), CURRENT_TIME())
+	</insert>
+	<update id="update" parameterType="NoticeVO">
+		UPDATE tbl_notice SET
+		n_title = #{n_title},
+		n_content = #{n_content},
+		n_date = CURRENT_DATE(),
+		n_time = CURRENT_TIME()
+		WHERE n_code = #{n_code}
+	</update>
+	<update id="updateHit" parameterType="NoticeVO">
+		UPDATE tbl_notice SET
+		n_hit
+		= n_hit + 1
+		WHERE n_code = #{n_code}
+	</update>
+	<delete id="delete">
+		DELETE FROM tbl_notice WHERE n_code = #{n_code}
+	</delete>
+</mapper>

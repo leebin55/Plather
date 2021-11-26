@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jhm.plather.dao.SongDao">
+
+<select id="selectAll" resultType="SongVO">
+	SELECT * FROM tbl_song
+</select>
+
+<!-- song의 seq값으로  -->
+<select id="findById" resultType="SongVO" parameterType="Long">
+	SELECT * FROM tbl_song WHERE s_seq = #{s_seq} 
+</select>
+
+
+
+<select id="findByTitle" resultType="SongVO" parameterType="String">
+	SELECT * FROM tbl_song WHERE s_title LIKE CONCAT('%', #{s_title},'%') 
+</select>
+<select id="findBySinger" resultType="SongVO" parameterType="String">
+	SELECT * FROM tbl_song WHERE s_singer LIKE CONCAT('%', #{s_singer},'%') 
+</select>
+
+<insert id="insert" parameterType="SongVO">
+	INSERT INTO tbl_song(s_bcode,s_title,s_singer) 
+	VALUES(#{s_bcode},#{s_title},#{s_singer})
+</insert>
+
+<!-- tbl_song 여러개의 리스트를 한번에 저장  -->
+<insert id="insertWithList"  parameterType="SongVO">
+	INSERT INTO tbl_song(s_bcode,s_title,s_singer) 
+	VALUES
+	<foreach collection="playList" item="song" separator=", ">
+	(
+		#{b_code},#{song.s_title},#{song.s_singer}
+	)
+	</foreach>
+	
+</insert>
+<update id="update" parameterType="SongVO">
+	UPDATE tbl_song SET 
+	s_bcode=#{s_bcode}
+	s_title = #{s_title},
+	s_singer = #{s_singer}
+	WHERE s_seq = #{s_seq}
+</update>
+<delete id="delete" >
+	DELETE FROM tbl_song where s_seq = #{s_seq}
+</delete>
+
+</mapper>

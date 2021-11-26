@@ -1,0 +1,123 @@
+s_seq,s_bcode,s_title ,s_singer
+1,1,바라만 본다,MSG워너비
+2,1,Next Level,aespa
+3,1,Butter,방탄소년단
+4,1,나를 아는 사람,MSG워너비
+5,1,헤픈우연,헤이즈
+6,1,신호등,이무진
+7,1,DUN DUN DANCE,오마이걸
+8,1,Peaches,Justin Bieber
+9,1,롤린,브레이브걸스
+10,1,치맛바람,브레이브걸스
+11,2,바라만 본다,MSG워너비
+12,2,Next Level,aespa
+13,2,Butter,방탄소년단
+14,2,나를 아는 사람,MSG워너비
+15,2,헤픈우연,헤이즈
+16,2,DUN DUN DANCE,오마이걸
+17,2,Peaches,Justin Bieber
+18,2,롤린,브레이브걸스
+19,2,치맛바람,브레이브걸스
+20,2,Alcohil-Free,트와이스
+21,3,Next Level,aespa
+22,3,Butter,방탄소년단
+23,3,헤픈우연,헤이즈
+24,3,치맛바람,브레이브걸스
+25,3,DUN DUN DANCE,오마이걸
+26,3,Peaches,Justin Bieber
+27,3,Alcohil-Free,트와이스
+28,3,롤린,브레이브걸스
+29,3,라일락,아이유
+30,3,ASAP,STACY
+31,4,Butter,방탄소년단
+32,4,Next Level,aespa
+33,4,헤픈우연,헤이즈
+34,4,DUN DUN DANCE,오마이걸
+35,4,Peaches,Justin Bieber
+36,4,롤린,브레이브걸스
+37,4,라일락,아이유
+38,4,ASAP,STACY
+39,4,운전만해,브레이브걸스
+40,4,Celebrity,아이유
+41,5,관찰,GOD
+42,5,어머님께,GOD
+43,5,니가 다시 돌아올수 있도록,GOD
+44,5,사랑해 그리고 기억해,GOD
+45,5,그대 날 더난 후로,GOD
+46,5,애수,GOD
+47,5,Friday Night,GOD
+48,6,test001,test002
+49,6,test002,test003
+50,6,test003,test004
+51,6,test004,test005
+52,6,test005,test006
+53,6,test006,test007
+54,7,test007,test008
+55,7,test008,test009
+56,7,test009,test010
+57,7,test010,test011
+58,7,test011,test012
+59,8,test012,test013
+60,8,test013,test014
+61,8,test014,test015
+62,8,test015,test016
+63,8,test016,test017
+64,9,test017,test018
+65,9,test018,test019
+66,9,test019,test020
+67,9,test020,test021
+68,9,test021,test022
+69,9,test022,test023
+70,10,test023,test024
+71,10,test024,test025
+72,10,test025,test026
+73,11,test026,test027
+74,11,test027,test028
+75,11,test028,test029
+76,11,test029,test030
+77,11,test030,test031
+78,11,test031,test032
+79,12,test032,test033
+80,12,test033,test034
+81,12,test034,test035
+82,12,test035,test036
+83,12,test036,test037
+84,12,test037,test038
+85,12,test038,test039
+86,12,test039,test040
+87,13,test040,test041
+88,13,test041,test042
+89,13,test042,test043
+90,13,test043,test044
+91,14,test044,test045
+92,14,test045,test046
+93,14,test046,test047
+94,15,test047,test048
+95,15,test048,test049
+96,15,test049,test050
+97,16,test050,test051
+98,16,test051,test052
+99,16,test052,test053
+100,16,test053,test054
+101,16,test054,test055
+102,17,test055,test056
+103,17,test056,test057
+104,17,test057,test058
+105,18,test058,test059
+106,18,test059,test060
+107,18,test060,test061
+108,19,test061,test062
+109,19,test062,test063
+110,19,test063,test064
+111,20,test064,test065
+112,20,test065,test066
+113,20,test066,test067
+114,21,test067,test068
+115,21,test068,test069
+116,21,test069,test070
+117,22,test070,test071
+118,22,test071,test072
+119,22,test072,test073
+120,23,test073,test074
+121,23,test074,test075
+122,23,test075,test076
